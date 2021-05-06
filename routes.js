@@ -12,7 +12,29 @@ routes.get('/select',(req,res)=>{
 		})
 	})
 })
-routes.post('/select',(req,res)=>{
+routes.get('/user/:ced',(req,res)=>{
+	req.getConnection((err,conn)=>{
+		if(err)return res.send(err)
+
+		conn.query('SELECT * FROM user where ced = ? ',[req.params.id],(err,rows)=>{
+			if (err)return res.send(err)
+
+			res.json(rows)
+		})
+	})
+})
+routes.get('/turnos/',(req,res)=>{
+	req.getConnection((err,conn)=>{
+		if(err)return res.send(err)
+
+		conn.query('SELECT * FROM productos where fecha = ? and hora ? ',[req.body.fecha,req.body.hora],(err,rows)=>{
+			if (err)return res.send(err)
+
+			res.json(rows)
+		})
+	})
+})
+routes.post('/',(req,res)=>{
 	req.getConnection((err,conn)=>{
 		if(err)return res.send(err)
 
