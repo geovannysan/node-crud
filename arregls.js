@@ -57,12 +57,38 @@ for (var k in repetidos) {
     cambiarValor(k, "si", "no")
   }
 }
-
-
-
-
-
 console.log(valores)
 console.info(values);
 console.log(arrr)
+var hidden;
+$("#date1").flatpickr({
+  enableTime: false,
+  dateFormat: "Y-m-d",
+  "disable": [
+    function (date) {
+      return (date.getDay() === 0 || date.getDay() === 6);  // disable weekends
+    }
+  ],
+  locale: {
+    firstDayOfWeek: 1,
+    weekdays: {
+      shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+      longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+    },
+    months: {
+      shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Оct', 'Nov', 'Dic'],
+      longhand: ['Enero', 'Febreo', 'Мarzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+    },
+  },
+});
+let dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+function myFunction() {
+  var x = document.getElementById("date1");
+  let date = new Date(x.value);
+
+  hidden = dias[date.getDay()];
+  console.log(hidden);
+  return true;
+}
+
 
