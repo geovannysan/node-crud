@@ -33,9 +33,11 @@ console.log(ra)
 var repetidoss = {};
 var repetidos = {};
 
+//cuenta los valores que se repeten 
 arr.forEach(function (numero) {
   repetidos[numero] = (repetidos[numero] || 0) + 1;
 });
+//borra el iten que se pasa en valos
 function borraItemValor(array, valor) {
   for (var i in array) {
     if (array[i] == valor) {
@@ -44,16 +46,21 @@ function borraItemValor(array, valor) {
   }
 }
 
-var values = [];
+
+//busco el valor de un indice de un arreglo 
 function cambiarValor(valorABuscar, valorViejo, valorNuevo) {
   valores.forEach(function (elemento) {
     elemento[valorABuscar] = elemento[valorABuscar] == valorViejo ? valorNuevo : elemento[valorABuscar]
   })
 }
+// recore el objeto repetidos busca la condicion y lo ingres a arregl
+var values = [];
 for (var k in repetidos) {
   if (repetidos[k] == 3) {
     values.push(k)
+        //borra del arreglo el indice =3 
     borraItemValor(arrr, k)
+     // pasa el indices = 3 y valor vejo y valor nuevo
     cambiarValor(k, "si", "no")
   }
 }

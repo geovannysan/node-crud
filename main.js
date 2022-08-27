@@ -1,10 +1,23 @@
 const cn = require('express')
+const http = require('http')
 const rutas = require('./routes.js')
+var cors = require('cors')
 const myconect = require('express-myconnection')
 const mysql =require('mysql')
-
 const app = cn()
-app.set('port',process.env.PORT || 9000)
+const servidor = http.createServer(app)
+const socketio = require('socket.io')
+const io = socketio(servidor)
+
+
+
+io.on('connect', socket=>{
+	socket.on('conectado',()=>{
+		console.log("usuario Conectado")
+	})
+})
+app.use(cors())
+app.set('port',process.env.PORT || 4000)
 const dboption ={
 	 host:'localhost',
        user:'root',
@@ -21,6 +34,7 @@ app.get('/',(req,res)=>{
 })
 app.use('/api',rutas)
 // correr server
+
 app.listen(app.get('port'),()=>{
-	console.log("esta escuchaso xd",app.get('port'))
+	console.log(" escuchaso ",app.get('port'))
 })
